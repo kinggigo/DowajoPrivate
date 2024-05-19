@@ -13,7 +13,7 @@ class InjectDatabaseHelper {
   static final columnType = 'injectType';
   static final columnName = 'injectName';
   static final columnPicture = 'injectPicture';
-  //static final columnDay = 'injectDay';
+  static final columnDay = 'injectDay';
   static final columnStartTime = 'injectStartTime';
   static final columnEndTime = 'injectEndTime';
   static final columnAmount = 'injectAmount';
@@ -48,7 +48,7 @@ class InjectDatabaseHelper {
             $columnType TEXT NOT NULL,
             $columnName TEXT NOT NULL,
             $columnPicture TEXT NOT NULL,
-            
+            $columnDay TEXT NOT NULL,
             $columnStartTime TEXT NOT NULL,
             $columnEndTime TEXT NOT NULL DEFAULT '{}'
             $columnAmount TEXT NOT NULL,
@@ -75,7 +75,7 @@ class InjectDatabaseHelper {
         injectType: maps[i]['injectType'],
         injectName: maps[i]['injectName'],
         injectPicture: maps[i]['injectPicture'],
-        //injectDay: maps[i]['injectDay'],
+        injectDay: maps[i]['injectDay'],
         injectStartTime: maps[i]['injectStartTime'],
         injectAmount: maps[i]['injectAmount'],
         injectChange: maps[i]['injectChange'],
