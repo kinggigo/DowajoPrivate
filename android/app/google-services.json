@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "701995628506",
+    "project_id": "dowajo-681e6",
+    "storage_bucket": "dowajo-681e6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:701995628506:android:9702d5a64d8ae844d172e3",
+        "android_client_info": {
+          "package_name": "com.dowajo.myapp.dowajo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXc1RkQQj6F-t-8-RXV79YwzHw2pcbtQ0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
