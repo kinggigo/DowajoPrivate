@@ -5,7 +5,7 @@ class InjectModel {
   final String injectType;
   final String injectName;
   final String injectPicture; // 사진 파일의 경로를 저장
-  //final String injectDay; // 요일
+  final String injectDay; // 요일
   final String injectStartTime;
   final String injectEndTime;
   final String injectAmount;
@@ -16,7 +16,7 @@ class InjectModel {
     required this.injectType,
     required this.injectName,
     required this.injectPicture, // 사진 파일의 경로를 저장
-    //required this.injectDay, //요일
+    required this.injectDay, //요일
     required this.injectStartTime,
     required this.injectEndTime,
     required this.injectAmount,
@@ -30,7 +30,7 @@ class InjectModel {
       'injectType': injectType,
       'injectName': injectName,
       'injectPicture': injectPicture,
-      //'injectDay': injectDay,
+      'injectDay': injectDay,
       'injectStartTime': injectStartTime,
       'injectEndTime': injectEndTime,
       'injectAmount': injectAmount,
@@ -45,7 +45,7 @@ class InjectModel {
       injectType: map['injectType'],
       injectName: map['injectName'],
       injectPicture: map['injectPicture'],
-      //injectDay: map['injectDay'],
+      injectDay: map['injectDay'],
       injectStartTime: map['injectStartTime'],
       injectEndTime: map['injectEndTime'],
       injectAmount: map['injectAmount'],
