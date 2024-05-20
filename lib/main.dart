@@ -10,6 +10,7 @@ import 'package:dowajo/components/models/injectModel.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:provider/provider.dart';
+import 'package:dowajo/Screens/inject/inject_list_provider.dart';
 
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
@@ -57,6 +58,9 @@ void main() async {
         ),
         ChangeNotifierProvider(
           create: (context) => InjectModelProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => InjectListProvider()..getInjectList(),
         ),
       ],
       child: MyApp(),
