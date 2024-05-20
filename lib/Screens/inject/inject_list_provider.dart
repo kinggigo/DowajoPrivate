@@ -25,4 +25,34 @@ class InjectListProvider extends ChangeNotifier {
       print('Error in getInjectList: $e');
     }
   }
+
+  ///YOONLEEVERSE
+  Future update(InjectModel update) async {
+    try {
+      await InjectDatabaseHelper.instance.update(update);
+      notifyListeners();
+    } catch (e) {
+      print("error in update : $e");
+    }
+  }
+
+  ///YOONLEEVERSE
+  Future delete(int id) async {
+    try {
+      await InjectDatabaseHelper.instance.delete(id);
+    } catch (e) {
+      print('Error in delete: $e');
+    }
+  }
+
+  ///YOONLEEVERSER
+  Future refresh() async {
+    try {
+      _injects.clear();
+      _injects = await InjectDatabaseHelper.instance.getAllInjects();
+      notifyListeners();
+    } catch (e) {
+      print('Error in getInjectList: $e');
+    }
+  }
 }
