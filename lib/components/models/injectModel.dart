@@ -9,7 +9,7 @@ class InjectModel {
   final String injectStartTime;
   final String injectEndTime;
   final String injectAmount;
-  final bool injectChange;
+  final int injectChange;
 
   InjectModel({
     required this.id,
@@ -34,7 +34,7 @@ class InjectModel {
       'injectStartTime': injectStartTime,
       'injectEndTime': injectEndTime,
       'injectAmount': injectAmount,
-      'injectChange': injectChange ? 1 : 0,
+      'injectChange': injectChange,
     };
   }
 
@@ -49,7 +49,7 @@ class InjectModel {
       injectStartTime: map['injectStartTime'],
       injectEndTime: map['injectEndTime'],
       injectAmount: map['injectAmount'],
-      injectChange: map['injectChange'] == 1,
+      injectChange: map['injectChange'],
     );
   }
 }
