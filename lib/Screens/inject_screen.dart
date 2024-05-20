@@ -126,16 +126,19 @@ class _InjectScreenState extends State<InjectScreen> {
                                             children: [
                                               const SizedBox(height: 15),
                                               ElevatedButton(
-                                                onPressed: () {
+                                                onPressed: () async {
                                                   ///YOONLEEVERSE 5/20
-                                                  Navigator.push(
+                                                  await Navigator.push(
                                                       context,
                                                       MaterialPageRoute(
                                                           builder: (context) =>
                                                               injectUpdate(
                                                                   inject: injectModelProvider
                                                                           .injects[
-                                                                      index])));
+                                                                      index]))).then(
+                                                      (value) =>
+                                                          Navigator.of(context)
+                                                              .pop());
                                                 },
                                                 style: ElevatedButton.styleFrom(
                                                   elevation: 0,
