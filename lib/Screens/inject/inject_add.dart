@@ -410,7 +410,7 @@ class _inject_addState extends State<inject_add> {
             injectType: Type,
             injectName: _injectNameController.text,
             injectPicture: _pickedFile?.path ?? '',
-            //injectDay: selectedDays.join(','),
+            injectDay: selectedDays.join(','),
             injectStartTime: formatTimeOfDay(startTime),
             injectEndTime: formatTimeOfDay(endTime),
             injectAmount: _injectAmountController.text,
