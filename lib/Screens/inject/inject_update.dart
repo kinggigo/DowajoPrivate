@@ -5,6 +5,7 @@ import 'package:dowajo/Screens/inject/inject_list_provider.dart';
 import 'package:flutter/foundation.dart';
 import "package:flutter/material.dart";
 import 'package:image_picker/image_picker.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:dowajo/Alarm/alarm_schedule.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -22,6 +23,7 @@ class injectUpdate extends StatefulWidget {
 enum type { normal, IV, nose }
 
 class _inject_UpdateState extends State<injectUpdate> {
+  ///YOONLEEVERSE 5/20
   int selectedRepeat = 1;
   XFile? _pickedFile;
   String Type = "일반 주사";
@@ -30,8 +32,27 @@ class _inject_UpdateState extends State<injectUpdate> {
   final TextEditingController _injectNameController = TextEditingController();
   final TextEditingController _injectAmountController = TextEditingController();
   List<String> selectedDays = []; // 선택된 요일을 저장하는 리스트
-  bool Change = false; //추가 교체 여부
+  int Change = 0; //추가 교체 여부
   type _type = type.normal;
+
+  @override
+  void initState() {
+    super.initState();
+    _injectNameController.text = widget.inject.injectName; // 약의 이름 설정
+    _injectAmountController.text = widget.inject.injectAmount;
+    selectedDays = widget.inject.injectDay.split(','); // 선택된 요일 설정
+    // selectedRepeat = widget.inject.medicineRepeat; // 복용 횟수 설정
+    startTime = _convertStringToTimeOfDay(widget.inject.injectStartTime);
+    endTime = _convertStringToTimeOfDay(widget.inject.injectEndTime);
+
+    _pickedFile = XFile(widget.inject.injectPicture); // 약의 사진 설정
+  }
+
+  TimeOfDay _convertStringToTimeOfDay(String time) {
+    final format = DateFormat.jm(); //"6:00 AM"
+    final DateTime temp = format.parse(time);
+    return TimeOfDay(hour: temp.hour, minute: temp.minute);
+  }
 
   void _showTimePicker(TimeOfDay time, bool start) async {
     final TimeOfDay? newTime = await showTimePicker(
@@ -103,10 +124,10 @@ class _inject_UpdateState extends State<injectUpdate> {
                 Row(
                   children: [
                     Checkbox(
-                        value: Change,
+                        value: Change == 1,
                         onChanged: (value) {
                           setState(() {
-                            Change = value!;
+                            Change = 0;
                           });
                         }),
                     Text("추가 교체 여부"),
@@ -563,7 +584,25 @@ class _inject_UpdateState extends State<injectUpdate> {
           }
         },
         child: ElevatedButton(
-          onPressed: null, // onPressed를 null로 설정하여 버튼을 비활성화
+          onPressed: () async {
+            InjectModel newInject = InjectModel(
+              id: widget.inject.id,
+              injectChange: Change,
+              injectEndTime: endTime.format(context),
+              injectStartTime: startTime.format(context),
+              injectDay:
+                  '${DateTime.now().year}-${DateTime.now().month.toString().padLeft(2, '0')}-${DateTime.now().day.toString().padLeft(2, '0')}',
+              injectName: _injectNameController.text,
+              injectAmount: _injectAmountController.text,
+              injectPicture: _pickedFile?.path ?? '',
+              injectType: _type.name,
+            );
+            await Provider.of<InjectListProvider>(context, listen: false)
+                .update(newInject);
+            await Provider.of<InjectListProvider>(context, listen: false)
+                .refresh();
+            Navigator.of(context).pop();
+          }, // onPressed를 null로 설정하여 버튼을 비활성화
           style: ButtonStyle(
             backgroundColor:
                 MaterialStateProperty.all<Color>(Color(0xFFA6CBA5)),
