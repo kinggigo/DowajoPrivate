@@ -50,7 +50,7 @@ class InjectDatabaseHelper {
             $columnPicture TEXT NOT NULL,
             $columnDay TEXT NOT NULL,
             $columnStartTime TEXT NOT NULL,
-            $columnEndTime TEXT NOT NULL DEFAULT '{}'
+            $columnEndTime TEXT NOT NULL DEFAULT '{}',
             $columnAmount TEXT NOT NULL,
             $columnChange INTEGER NOT NULL
           )
