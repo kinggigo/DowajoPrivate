@@ -307,6 +307,7 @@ class _InjectScreenState extends State<InjectScreen> {
                   context,
                   MaterialPageRoute(builder: (_) => inject_add()),
                 );
+                await injectModelProvider.refresh();
                 setState(() {});
               },
               shape: RoundedRectangleBorder(
